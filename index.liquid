@@ -1,0 +1,14 @@
+---
+layout: base.liquid
+---
+
+{{ collections.days.last.templateContent }}
+
+{% assign yesterday_index = collections.days.length | minus: 2 %}
+
+{% assign yesterday = collections.days[yesterday_index] %}
+{% if yesterday %}
+  <p>
+    <a href="{{ yesterday.url }}">Yesterday</a>
+  </p>
+{% endif %}
