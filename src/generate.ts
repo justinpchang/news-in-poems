@@ -27,7 +27,8 @@ const main = async (startDate: string, endDate: string): Promise<void> => {
     params: {
       "earliest-publish-date": startDate,
       "latest-publish-date": endDate,
-      "news-sources": "https://www.nytimes.com",
+      "news-sources":
+        "https://www.nytimes.com,https://www.bbc.com,https://www.npr.org",
       sort: "sentiment",
       "sort-direction": "DESC",
     },
