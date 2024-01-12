@@ -3,11 +3,10 @@ layout: base.liquid
 ---
 
 <h1>News in poems</h1>
-<ul>
-  {% assign days = collections.days | reverse %}
-  {% for day in days %}
-    <p>
-      <a href="{{ day.url }}">{{ day.data.prettyDate }}</a>
-    </p>
-  {% endfor %}
-</ul>
+{% assign days = collections.days | reverse %}
+{% for day in days %}
+  <p>
+    <a href="{{ day.url }}">{{ day.data.prettyDate }}</a>
+    &mdash; {{ day | excerpt }}
+  </p>
+{% endfor %}
