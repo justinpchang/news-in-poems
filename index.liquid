@@ -2,13 +2,11 @@
 layout: base.liquid
 ---
 
-{{ collections.days.last.templateContent }}
-
-{% assign yesterday_index = collections.days.length | minus: 2 %}
-
-{% assign yesterday = collections.days[yesterday_index] %}
-{% if yesterday %}
-  <p>
-    <a href="{{ yesterday.url }}">Yesterday</a>
-  </p>
-{% endif %}
+<h1>News in poems</h1>
+<ul>
+  {% for day in collections.days %}
+    <li>
+      <a href="{{ day.url }}">{{ day.data.prettyDate }}</a>
+    </li>
+  {% endfor %}
+</ul>

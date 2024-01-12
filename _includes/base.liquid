@@ -4,21 +4,88 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Day</title>
+    <title>{{ prettyDate }}</title>
+    <style>
+      @font-face {
+        font-family: EB Garamond;
+        src: url('/fonts/EBGaramond-VariableFont_wght.ttf');
+        font-display: swap;
+      }
+      * {
+        font-family: EB Garamond;
+      }
+      body {
+        background-color: rgb(255, 255, 249)
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .pretty-date {
+        color: grey;
+        font-size: 2rem;
+      }
+      img {
+        width: 200px;
+        height: auto;
+      }
+      .nav {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        margin: 2rem 0;
+      }
+      .nav * {
+        display: block;
+        text-align: center;
+      }
+      .nav div:first-child a {
+        text-align: left;
+      }
+      .nav div:last-child a {
+        text-align: right;
+      }
+    </style>
   </head>
   <body>
-    {{ content }}
+    <div class="container">
+      <div class="content">
+        <p class="pretty-date">
+          {{ prettyDate }}
+        </p>
 
-    {% assign previous_day = collections.days | getPreviousCollectionItem: page %}
-    {% assign next_day = collections.days | getNextCollectionItem: page %}
+        {{ content }}
 
-    <p>
-      {% if previous_day %}
-        <a href="{{ previous_day.url }}">&lt;</a>
-      {% endif %}
-      {% if next_day %}
-        <a href="{{ next_day.url }}">&gt;</a>
-      {% endif %}
-    </p>
+        {% if url %}
+          <a href="{{url}}">
+            <img src="{{image}}" alt="Read the story" />
+          </a>
+        {% endif %}
+
+        {% assign previous_day = collections.days | getPreviousCollectionItem: page %}
+        {% assign next_day = collections.days | getNextCollectionItem: page %}
+        {% assign random_day = collections.days | random %}
+
+        <div class="nav">
+          <div>
+            {% if previous_day %}
+              <a href="{{ previous_day.url }}">&lt; previous</a>
+            {% endif %}
+          </div>
+          <div>
+            {% if random_day %}
+              <a href="{{ random_day.url }}">&#8212; random &#8212;</a>
+            {% endif %}
+          </div>
+          <div>
+            {% if next_day %}
+              <a href="{{ next_day.url }}">next &gt;</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
