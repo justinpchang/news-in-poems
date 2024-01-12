@@ -1,0 +1,30 @@
+name: Generate
+on:
+  schedule:
+    - cron: "0 1 * * *"
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PUSH_TOKEN }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Write
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          WORLD_NEWS_API_KEY: ${{ secrets.WORLD_NEWS_API_KEY }}
+        run: |
+          npm i
+          npm run generate-today
+      - name: Commit
+        run: |
+          git config --global user.name "Justin Chang"
+          git config --global user.email "justinpchang@users.noreply.github.com"
+          git add .
+          git commit -m "chore(content): $(date +'%d-%m-%Y')"
+          git push

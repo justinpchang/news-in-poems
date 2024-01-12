@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generate": "tsc && node build/generate.js"
+    "generate": "tsc && node build/generate.js",
+    "generate-today": "tsc && node build/generate.js \"$(date +'%Y-%m-%d')\" \"$(date -v +1d +'%Y-%m-%d')\""
   },
   "keywords": [],
   "author": "",
