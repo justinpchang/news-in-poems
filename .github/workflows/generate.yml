@@ -23,8 +23,8 @@ jobs:
           npm run generate-today
       - name: Commit
         run: |
-          git config --global user.name "Justin Chang"
-          git config --global user.email "justinpchang@users.noreply.github.com"
+          git config --global user.name "justinpchang"
+          git config --global user.email "justin.p.chang@gmail.com"
           git add .
           git commit -m "chore(content): $(date +'%d-%m-%Y')"
           git push
