@@ -29,11 +29,9 @@ const main = async (startDate: string, endDate: string): Promise<void> => {
       "latest-publish-date": endDate,
       "news-sources":
         "https://www.nytimes.com,https://www.bbc.com,https://www.npr.org",
-      sort: "sentiment",
-      "sort-direction": "DESC",
     },
   });
-  const blacklistedWords = ["podcast", "trump"];
+  const blacklistedWords = ["podcast", "trump", "briefing"];
   const data = response.data.news.filter(({ url }) =>
     blacklistedWords.every((word) => !url.toLowerCase().includes(word))
   );
